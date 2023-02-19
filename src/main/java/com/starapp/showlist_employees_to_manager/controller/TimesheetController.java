@@ -21,13 +21,14 @@ public class TimesheetController {
 	@Autowired
 	TimesheetRepository timesheetRepository;
 	
-	
+	//showalltimesheetto manager
 	@CrossOrigin("*")
 	@GetMapping("/java/showtimesheettomanager/{managerid}")
 	public List<Timesheet> fetchAlltimesheet(@PathVariable("managerid") int managerid){
 	  
 		return timesheetRepository.findAllTimesheet(managerid);
 	}
+	//update status of timesheet of employee by manager
 	@PatchMapping("/java/showtimesheettomanager/{managerid}/{timesheetid}")
 	public Timesheet updatestatus(@PathVariable int managerid,@PathVariable String timesheetid) {
 		Timesheet timesheet = timesheetRepository.findBytimesheetId(timesheetid);
@@ -35,19 +36,25 @@ public class TimesheetController {
 		return timesheetRepository.save(timesheet);
 		
 	}
-	
+
 	//showtimesheetbasedonprojectid
+	@CrossOrigin("*")	
 	@GetMapping("/java/showtimesheettomanagerprojectwise/{managerid}/{projectid}")
 	public List<Timesheet> fetchAlltimesheetOfUserBasedOnProjectId(@PathVariable("managerid") int employeeid,@PathVariable("projectid") String projectid){
 		
 		return timesheetRepository.findByemployeeId(employeeid,projectid);
 	}
 	
+	//show all timesheet to manager
+	@CrossOrigin("*")	
 	@GetMapping("/java/showtimesheettoemployee/{employeeid}")
 	public List<Timesheet> fetchAlltimesheetOfUser(@PathVariable("employeeid") int employeeid){
 	
 		return timesheetRepository.findByemployeeId(employeeid);
 	}
+	
+	//show all timesheet to employee based on aprroval status 1-approved and 0-rejected
+	@CrossOrigin("*")	
 	@GetMapping("/java/showtimesheettoemployee/{employeeid}/{approval}")
 	public List<Timesheet> fetchAlltimesheetOfUser(@PathVariable("employeeid") int employeeid,@PathVariable("approval")int approval){
 	

@@ -16,6 +16,8 @@ import com.starapp.showlist_employees_to_manager.repository.ProjectRepository;
 public class ProjectController {
 @Autowired
 ProjectRepository projectrepository;
+
+//list of project to manager
 @CrossOrigin("*")	
 @GetMapping("/java/showlistofprojettomanager/{managerid}")
 public List<Project> fetchAlltimesheet(@PathVariable("managerid") int managerid){
