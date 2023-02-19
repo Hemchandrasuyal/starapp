@@ -23,7 +23,11 @@ public class EmployeeController {
 	
 	@Autowired
 	EmployeeRepository employeeRepository;
-    	
+    @GetMapping("java/login/{employeeid}/{password}")
+    public List<Employee> fetchEmployee(@PathVariable("employeeid") int employeeid,@PathVariable("password") String password){
+    	return employeeRepository.findByemployeeIdAndPAssword(employeeid,password);
+    }
+    
 
 //	@GetMapping("/employeess")
 //	public List<String> fetchAllProject(){

@@ -23,12 +23,12 @@ public class TimesheetController {
 	
 	
 	@CrossOrigin("*")
-	@GetMapping("/showtimesheettomanager/{managerid}")
+	@GetMapping("/java/showtimesheettomanager/{managerid}")
 	public List<Timesheet> fetchAlltimesheet(@PathVariable("managerid") int managerid){
 	  
 		return timesheetRepository.findAllTimesheet(managerid);
 	}
-	@PatchMapping("/showtimesheettomanager/{managerid}/{timesheetid}")
+	@PatchMapping("/java/showtimesheettomanager/{managerid}/{timesheetid}")
 	public Timesheet updatestatus(@PathVariable int managerid,@PathVariable String timesheetid) {
 		Timesheet timesheet = timesheetRepository.findBytimesheetId(timesheetid);
 		timesheet.setApproval(1);
@@ -37,18 +37,18 @@ public class TimesheetController {
 	}
 	
 	//showtimesheetbasedonprojectid
-	@GetMapping("/showtimesheettomanagerprojectwise/{managerid}/{projectid}")
+	@GetMapping("/java/showtimesheettomanagerprojectwise/{managerid}/{projectid}")
 	public List<Timesheet> fetchAlltimesheetOfUserBasedOnProjectId(@PathVariable("managerid") int employeeid,@PathVariable("projectid") String projectid){
 		
 		return timesheetRepository.findByemployeeId(employeeid,projectid);
 	}
 	
-	@GetMapping("/showtimesheettoemployee/{employeeid}")
+	@GetMapping("/java/showtimesheettoemployee/{employeeid}")
 	public List<Timesheet> fetchAlltimesheetOfUser(@PathVariable("employeeid") int employeeid){
 	
 		return timesheetRepository.findByemployeeId(employeeid);
 	}
-	@GetMapping("/showtimesheettoemployee/{employeeid}/{approval}")
+	@GetMapping("/java/showtimesheettoemployee/{employeeid}/{approval}")
 	public List<Timesheet> fetchAlltimesheetOfUser(@PathVariable("employeeid") int employeeid,@PathVariable("approval")int approval){
 	
 		return timesheetRepository.findByemployeeIdapproval(employeeid,approval);

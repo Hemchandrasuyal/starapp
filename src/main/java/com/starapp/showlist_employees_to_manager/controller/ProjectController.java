@@ -17,7 +17,7 @@ public class ProjectController {
 @Autowired
 ProjectRepository projectrepository;
 @CrossOrigin("*")	
-@GetMapping("/showlistofprojettomanager/{managerid}")
+@GetMapping("/java/showlistofprojettomanager/{managerid}")
 public List<Project> fetchAlltimesheet(@PathVariable("managerid") int managerid){
 	  
 	return projectrepository.findByemployeeId(managerid);
