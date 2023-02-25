@@ -17,10 +17,12 @@ public interface TimesheetRepository extends JpaRepository<Timesheet,String>{
 	@Query("select t from Timesheet t where t.employee.Employeeid=?1  ")
 	List<Timesheet> findByemployeeId(int Employeeid);
   
-	@Query("select t from Timesheet t where t.employee.Employeeid=?1 and t.project.Projectid=?2  ")
+	@Query("select t from Timesheet t where t.employee.Employeeid!=?1 and t.project.Projectid=?2  ")
 	List<Timesheet> findByemployeeId(int Employeeid,String Projectid);
 	
 	@Query("select t from Timesheet t where t.employee.Employeeid=?1 and t.Approval=?2  ")
 	List<Timesheet> findByemployeeIdapproval(int Employeeid,int Approval);
     Timesheet findBytimesheetId(String timesheetid);
+    
+    
 }
